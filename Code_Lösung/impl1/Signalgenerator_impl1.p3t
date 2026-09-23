@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "Signalgenerator_impl1.log"
+-o "Signalgenerator_impl1.csv"
+-pr "Signalgenerator_impl1.prf"

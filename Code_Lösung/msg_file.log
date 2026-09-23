@@ -1,0 +1,32 @@
+SCUBA, Version Diamond (64-bit) 3.14.0.75.2
+Sat Feb 28 15:44:17 2026
+  
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
+  
+BEGIN SCUBA Module Synthesis
+  
+    Issued command   : C:\lscc\diamond\3.14\ispfpga\bin\nt64\scuba.exe -w -n SIN -lang vhdl -synth lse -bb -arch mg5a00 -type cosine -addr_width 10 -width 8 -pfu -input_reg -mode 0 -output_reg 
+    Circuit name     : SIN
+    Module type      : cosine
+    Module Version   : 1.6
+    Ports            : 
+    Inputs       : Clock, ClkEn, Reset, Theta[9:0]
+    Outputs      : Sine[7:0]
+    I/O buffer       : not inserted
+    EDIF output      : SIN.edn
+    VHDL output      : SIN.vhd
+    VHDL template    : SIN_tmpl.vhd
+    VHDL testbench   : tb_SIN_tmpl.vhd
+    VHDL purpose     : for synthesis and simulation
+    Bus notation     : big endian
+    Report output    : SIN.srp
+    Estimated Resource Usage:
+            LUT : 264
+            Reg : 18
+  
+END   SCUBA Module Synthesis
+

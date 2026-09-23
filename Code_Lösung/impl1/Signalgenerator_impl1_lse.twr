@@ -1,0 +1,181 @@
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Tue Dec 23 18:09:58 2025
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design:     Toplevel
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 5.000000 -name clk0 [get_nets clk_c]
+            1600 items scored, 416 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+Error:  The following path violates requirements by 1.971ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \Rect1/counter_7__i21  (from clk_c +)
+   Destination:    FD1S3AX    D              \Rect1/state_16  (to clk_c +)
+
+   Delay:                   6.898ns  (24.7% logic, 75.3% route), 8 logic levels.
+
+ Constraint Details:
+
+      6.898ns data_path \Rect1/counter_7__i21 to \Rect1/state_16 violates
+      5.000ns delay constraint less
+      0.073ns L_S requirement (totaling 4.927ns) by 1.971ns
+
+ Path Details: \Rect1/counter_7__i21 to \Rect1/state_16
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.410             CK to Q              \Rect1/counter_7__i21 (from clk_c)
+Route         2   e 1.258                                  \Rect1/counter[21]
+LUT4        ---     0.259              A to Z              \Rect1/i65_1_lut
+Route         1   e 1.020                                  \Rect1/n135
+A1_TO_FCO   ---     0.312           C[2] to COUT           \Rect1/equal_125_0
+Route         1   e 0.020                                  \Rect1/n198
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_27
+Route         1   e 0.020                                  \Rect1/n199
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_29
+Route         1   e 0.020                                  \Rect1/n200
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_31
+Route         1   e 0.020                                  \Rect1/n201
+FCI_TO_F    ---     0.272            CIN to S[2]           \Rect1/equal_125_32
+Route        33   e 1.819                                  \Rect1/n80
+LUT4        ---     0.259              B to Z              \Rect1/i1_2_lut
+Route         1   e 1.020                                  \Rect1/state_N_66
+                  --------
+                    6.898  (24.7% logic, 75.3% route), 8 logic levels.
+
+
+Error:  The following path violates requirements by 1.971ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \Rect1/counter_7__i16  (from clk_c +)
+   Destination:    FD1S3AX    D              \Rect1/state_16  (to clk_c +)
+
+   Delay:                   6.898ns  (24.7% logic, 75.3% route), 8 logic levels.
+
+ Constraint Details:
+
+      6.898ns data_path \Rect1/counter_7__i16 to \Rect1/state_16 violates
+      5.000ns delay constraint less
+      0.073ns L_S requirement (totaling 4.927ns) by 1.971ns
+
+ Path Details: \Rect1/counter_7__i16 to \Rect1/state_16
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.410             CK to Q              \Rect1/counter_7__i16 (from clk_c)
+Route         2   e 1.258                                  \Rect1/counter[16]
+LUT4        ---     0.259              A to Z              \Rect1/i116_1_lut
+Route         1   e 1.020                                  \Rect1/n186
+A1_TO_FCO   ---     0.312           B[2] to COUT           \Rect1/equal_125_0
+Route         1   e 0.020                                  \Rect1/n198
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_27
+Route         1   e 0.020                                  \Rect1/n199
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_29
+Route         1   e 0.020                                  \Rect1/n200
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_31
+Route         1   e 0.020                                  \Rect1/n201
+FCI_TO_F    ---     0.272            CIN to S[2]           \Rect1/equal_125_32
+Route        33   e 1.819                                  \Rect1/n80
+LUT4        ---     0.259              B to Z              \Rect1/i1_2_lut
+Route         1   e 1.020                                  \Rect1/state_N_66
+                  --------
+                    6.898  (24.7% logic, 75.3% route), 8 logic levels.
+
+
+Error:  The following path violates requirements by 1.971ns
+
+ Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
+
+   Source:         FD1S3IX    CK             \Rect1/counter_7__i6  (from clk_c +)
+   Destination:    FD1S3AX    D              \Rect1/state_16  (to clk_c +)
+
+   Delay:                   6.898ns  (24.7% logic, 75.3% route), 8 logic levels.
+
+ Constraint Details:
+
+      6.898ns data_path \Rect1/counter_7__i6 to \Rect1/state_16 violates
+      5.000ns delay constraint less
+      0.073ns L_S requirement (totaling 4.927ns) by 1.971ns
+
+ Path Details: \Rect1/counter_7__i6 to \Rect1/state_16
+
+   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
+L_CO        ---     0.410             CK to Q              \Rect1/counter_7__i6 (from clk_c)
+Route         2   e 1.258                                  \Rect1/counter[6]
+LUT4        ---     0.259              A to Z              \Rect1/i112_1_lut
+Route         1   e 1.020                                  \Rect1/n182
+A1_TO_FCO   ---     0.312           A[2] to COUT           \Rect1/equal_125_0
+Route         1   e 0.020                                  \Rect1/n198
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_27
+Route         1   e 0.020                                  \Rect1/n199
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_29
+Route         1   e 0.020                                  \Rect1/n200
+FCI_TO_FCO  ---     0.063            CIN to COUT           \Rect1/equal_125_31
+Route         1   e 0.020                                  \Rect1/n201
+FCI_TO_F    ---     0.272            CIN to S[2]           \Rect1/equal_125_32
+Route        33   e 1.819                                  \Rect1/n80
+LUT4        ---     0.259              B to Z              \Rect1/i1_2_lut
+Route         1   e 1.020                                  \Rect1/state_N_66
+                  --------
+                    6.898  (24.7% logic, 75.3% route), 8 logic levels.
+
+Warning: 6.971 ns is the maximum delay for this constraint.
+
+
+Timing Report Summary
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 5.000000 -name     |             |             |
+clk0 [get_nets clk_c]                   |     5.000 ns|     6.971 ns|     8 *
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+1 constraints not met.
+
+--------------------------------------------------------------------------------
+Critical Nets                           |   Loads|  Errors| % of total
+--------------------------------------------------------------------------------
+\Rect1/n80                              |      33|     416|     99.00%
+                                        |        |        |
+\Rect1/n201                             |       1|     284|     68.27%
+                                        |        |        |
+\Rect1/n200                             |       1|     148|     35.58%
+                                        |        |        |
+\Rect1/n199                             |       1|     140|     33.65%
+                                        |        |        |
+\Rect1/n198                             |       1|     100|     24.04%
+                                        |        |        |
+--------------------------------------------------------------------------------
+
+
+Timing summary:
+---------------
+
+Timing errors: 416  Score: 186300
+
+Constraints cover  1600 paths, 100 nets, and 196 connections (92.5% coverage)
+
+
+Peak memory: 87990272 bytes, TRCE: 1548288 bytes, DLYMAN: 0 bytes
+CPU_TIME_REPORT: 0 secs 

@@ -1,0 +1,38 @@
+\chapter{Aufgaben}
+
+Die folgenden Aufgaben bauen aufeinander auf: Zuerst geht es darum, den erklärten Code wirklich verstanden zu haben, danach folgt eine Rechenaufgabe zum DDS-Prinzip, und zum Schluss zwei offene, kreative Aufgaben, bei denen du selbst etwas entwirfst. Für Aufgabe 2 findest du am Ende des Kapitels eine Lösung, für die kreativen Aufgaben gibt es bewusst keine Musterlösung.
+
+\section{Fehlende Codeteile rekonstruieren}
+
+In eurem Projektordner sind an einigen Stellen Codezeilen nicht mehr vorhanden, offenbar hat sich ein code-fressender Wurm durch die Dateien gefressen. Die betroffenen Stellen sind mit \texttt{-- TODO} markiert.
+
+Rekonstruiere die fehlenden Zeilen anhand des in Kapitel~\ref{ch:funktionsweise} erklärten Funktionsprinzips. Teste anschließend jede Wellenform einzeln am Oszilloskop, bevor du zur nächsten Aufgabe übergehst.
+
+\section{Frequenzberechnung beim Sinusgenerator}
+\label{sec:frequenzberechnung}
+
+Der Sinusgenerator arbeitet nach dem DDS-Prinzip mit einem 10 Bit breiten Phasenakkumulator, ein voller Umlauf entspricht also 1024 Schritten. Der Phasenakkumulator wird bei jedem \texttt{tick\_en}-Puls um \texttt{P1} erhöht, und \texttt{tick\_en} selbst feuert alle \texttt{P2} Systemtakte einmal, bei einem Systemtakt von 50\,MHz.
+
+\begin{enumerate}
+    \item Stelle eine Formel auf, die die Ausgabefrequenz $f_{\text{out}}$ in Abhängigkeit von \texttt{P1}, \texttt{P2} und dem Systemtakt beschreibt.
+    \item Finde jeweils ein gültiges Wertepaar (\texttt{P1}, \texttt{P2}), mit dem der Sinusgenerator eine Ausgabefrequenz von exakt 100\,Hz beziehungsweise exakt 1\,kHz erzeugt. Achte darauf, \texttt{P1} kleiner als 1024 zu wählen, größere Werte werden im Code auf 10 Bit gekürzt und ergeben dadurch eine andere Frequenz als erwartet.
+    \item Überprüfe deine berechneten Werte am Oszilloskop.
+\end{enumerate}
+
+\section{Eigene Wellenform auf Modus X}
+
+Modus 2 ist im Multiplexer des Toplevels aktuell auf stumm geschaltet und in der LED-Anzeige als \glqq X (deine Funktion)\grqq{} reserviert. Genau dafür ist er da.
+
+Denk dir eine eigene mathematische Funktion aus, zum Beispiel eine Betragssinuskurve, eine Exponentialkurve, eine Kombination aus zwei der bestehenden Wellenformen oder etwas völlig anderes. Implementiere sie als eigenständiges Modul nach demselben Muster wie \texttt{rect\_gen}, \texttt{dreieck\_gen}, \texttt{saegezahn\_gen} oder \texttt{sinus\_gen}, und binde es im Toplevel anstelle des stummen Platzhalters bei Modus 2 ein.
+
+\section{Bonus: eigene Melodie für den Mystery-Modus}
+
+Das Modul \texttt{mystery} spielt eine fest hinterlegte Notenfolge ab. Komponiere eine eigene kurze Melodie, lege die passenden Phaseninkremente für jede Note im Code fest und stelle über \texttt{TICKS\_PER\_NOTE} ein Tempo ein, das dir gefällt.
+
+\section{Lösungen}
+
+\textbf{Aufgabe 2:} Ein voller Umlauf des Phasenakkumulators entspricht 1024 Schritten. Pro \texttt{tick\_en}-Puls wächst er um \texttt{P1}, und \texttt{tick\_en} feuert mit $\frac{50\,\text{MHz}}{\texttt{P2}}$. Damit ergibt sich:
+\[
+f_{\text{out}} = \frac{\texttt{P1}}{1024} \cdot \frac{50\,\text{MHz}}{\texttt{P2}}
+\]
+Für exakt 100\,Hz: \texttt{P1} = 32, \texttt{P2} = 15625. Für exakt 1\,kHz: \texttt{P1} = 64, \texttt{P2} = 3125. Es gibt jeweils noch weitere gültige Kombinationen, diese beiden sind nur ein Beispiel.

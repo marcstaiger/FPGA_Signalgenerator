@@ -1,0 +1,22 @@
+---------------------------------------------------
+Report for cell Toplevel
+   Instance path: Toplevel
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      36.00        100.0
+                                  LUT4	      14.00        100.0
+                                 IOBUF	         17        100.0
+                                PFUREG	         33        100.0
+                                RIPPLE	         22        100.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                              rect_gen	          1        97.2
+---------------------------------------------------
+Report for cell rect_gen
+   Instance path: Toplevel/Rect1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      35.00        97.2
+                                  LUT4	      13.00        92.9
+                                PFUREG	         33        100.0
+                                RIPPLE	         22        100.0

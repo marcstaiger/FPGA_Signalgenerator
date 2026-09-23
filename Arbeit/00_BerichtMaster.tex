@@ -1,0 +1,70 @@
+\documentclass[a4paper,12pt]{scrreprt}
+\usepackage[left=3cm, right=2cm, bottom=2.5cm, top = 2.5cm]{geometry}
+\usepackage[
+    pdftitle={FPGA Praktikum - Signalgenerator},
+    pdfauthor={Marc Staiger},
+    pdfkeywords={FPGA, VHDL, Signalgenerator},
+    hidelinks
+]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsfonts, amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{chngcntr}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[scaled]{helvet}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{pdfpages}
+
+\counterwithout{chapter}{figure}
+
+
+
+\fancyhf{}
+\fancyhead[R]{\slshape\leftmark}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\textcolor{gray}{\footnotesize{Marc Staiger }}}
+  \renewcommand{\headrulewidth}{0.5mm}
+  \renewcommand{\footrulewidth}{0.2mm}
+  
+
+
+\renewcommand\familydefault{\sfdefault}
+\linespread{1.1}
+\begin{document}
+\setlength{\parindent}{0em}
+
+\pagestyle{empty}
+
+\pagenumbering{gobble}
+\include{01_titel}
+\tableofcontents
+\thispagestyle{empty}
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\setcounter{page}{0}
+\include{02_Einleitung}
+\include{03_Aufbau_und_Bedienung}
+\include{04_Funktionsweise}
+\include{05_Aufgaben}
+\setcounter{page}{1}
+\pagenumbering{Roman}
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+\include{06_Anhang}
+\end{document}

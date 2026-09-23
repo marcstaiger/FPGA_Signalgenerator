@@ -1,0 +1,9 @@
+#Start recording tcl command: 5/15/2026 11:53:10
+#Project Location: C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code; Project name: SGN_GEN
+C:/Users/staig/Downloads
+murx
+#Start recording tcl command: 5/15/2026 11:53:34
+#Project Location: C:/Users/staig/Downloads; Project name: murx
+prj_project open "C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/Signalgenerator.ldf"
+prj_project saveas -name "murx" -dir "C:/Users/staig/Downloads"
+#Stop recording: 5/15/2026 11:53:35

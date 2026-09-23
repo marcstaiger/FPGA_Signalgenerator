@@ -1,0 +1,62 @@
+\chapter{Funktionsweise}
+\label{ch:funktionsweise}
+
+Nachdem Aufbau und Bedienung der Platine geklärt sind, geht es in diesem Kapitel um die interne Funktionsweise: Wie die einzelnen Module zusammenspielen und nach welchem Prinzip jedes von ihnen sein Signal erzeugt. Dieses Verständnis erleichtert später den Einstieg in den Code der einzelnen Module und zeigt, an welcher Stelle du selbst weiterbauen musst.
+
+\section{Architektur im Überblick}
+
+Der Signalgenerator besteht aus einer Handvoll Modulen, die alle vom \texttt{Toplevel} aus miteinander verdrahtet werden:
+
+\begin{itemize}
+    \item \textbf{Steuerung} wertet die fünf Taster aus und verwaltet, welcher Modus, welcher Parameter und welcher Wert gerade aktiv ist.
+    \item \textbf{Frequenzteiler} sorgt dafür, dass alle Wellenformgeneratoren im richtigen Tempo laufen (dazu gleich mehr).
+    \item Vier \textbf{Wellenformgeneratoren}, nämlich Rechteck, Dreieck, Sägezahn und Sinus, laufen die ganze Zeit parallel und rechnen jeweils ihr eigenes Signal aus.
+    \item Ein \textbf{Multiplexer} pickt sich am Ende genau die Wellenform heraus, die gerade eingestellt ist, und legt sie auf den Ausgang.
+    \item Der Ausgang geht 8 Bit breit, ein Pin pro Bit, auf den DAC und erzeugt dort die analoge Spannung, die du am Oszilloskop siehst.
+\end{itemize}
+
+Wichtig dabei: Alle vier Generatoren laufen fortlaufend, unabhängig davon, welcher Modus gerade angezeigt wird. Es wird also nicht zwischen ihnen \glqq umgeschaltet\grqq{} im Sinne von an/aus, der Multiplexer entscheidet nur, wessen Ausgabe gerade nach außen durchgereicht wird. Das hält die Schaltung einfach, weil kein Generator wissen muss, ob er gerade \glqq dran\grqq{} ist oder nicht.
+
+\section{Ein Takt, viele Geschwindigkeiten}
+
+Eine zentrale Fragestellung dabei: Wie lassen sich aus einem einzigen, festen 50\,MHz-Systemtakt unterschiedlich schnelle Ausgabefrequenzen erzeugen? Der naheliegende, aber ungeeignete Ansatz wäre, selbst einen langsameren Takt zu erzeugen, zum Beispiel indem man ein Bit eines Zählers als Takt für andere Register verwendet.
+
+Das Problem dabei: Der echte 50\,MHz-Takt läuft im FPGA über spezielle, extrem schnelle Verteilleitungen, die dafür sorgen, dass er an jedem Flipflop praktisch zeitgleich ankommt. Ein selbstgebauter Takt läuft dagegen über ganz normale Signalleitungen und kommt an verschiedenen Registern leicht zeitversetzt an. Bei wenigen Registern fällt das nicht unbedingt auf, bei vielen kann es zu Fehlern führen, die in der Simulation unsichtbar bleiben und erst auf der echten Hardware als sporadisches Rauschen oder Aussetzer auftauchen.
+
+Die sauberere Lösung: \emph{alle} Register bleiben am echten Systemtakt, bekommen aber zusätzlich ein ganz normales Signal spendiert, das nur gelegentlich für einen Takt lang auf \texttt{1} geht, ein sogenanntes \emph{Enable-Signal}. Jedes Register prüft bei jeder Taktflanke: \glqq Ist das Enable-Signal gerade aktiv?\grqq{} und übernimmt einen neuen Wert nur dann. Ist es das nicht, bleibt der alte Wert einfach stehen, obwohl der Takt weiterläuft.
+
+Im Projekt heißt dieses Signal \texttt{tick\_en} und wird vom Modul \texttt{frequenzteiler} erzeugt: Ein Zähler läuft im Systemtakt hoch und setzt \texttt{tick\_en} für genau einen Takt auf \texttt{1}, sobald er den Wert \texttt{P2} erreicht hat. Je größer \texttt{P2}, desto seltener feuert \texttt{tick\_en}, desto langsamer laufen alle Generatoren, und desto tiefer wird der erzeugte Ton. \texttt{P2} ist also der grobe, gemeinsame Geschwindigkeitsregler für das ganze System.
+
+\section{Wellenformerzeugung}
+
+Alle vier Generatoren bekommen denselben Systemtakt und dasselbe \texttt{tick\_en}, rechnen ihr Signal aber nach unterschiedlichem Prinzip aus.
+
+\subsection{Rechteck}
+
+Ein Zähler läuft mit jedem \texttt{tick\_en}-Puls hoch. Erreicht er den eingestellten Wert \texttt{P1}, kippt der Ausgang zwischen einem oberen und einem unteren Wert um und der Zähler beginnt von vorn. Weil High- und Low-Phase über denselben Zähler und denselben Vergleichswert laufen, ist das Tastverhältnis unabhängig von \texttt{P1} immer exakt 50\,\%.
+
+\subsection{Dreieck}
+
+Hier zählt ein Wert schrittweise hoch bis zu einer oberen Grenze und dann wieder runter bis zur unteren Grenze, endlos im Wechsel. \texttt{P1} legt fest, wie viele \texttt{tick\_en}-Pulse ein einzelner Schritt dauert, je größer \texttt{P1}, desto langsamer und \glqq gestreckter\grqq{} wird die Dreieckschwingung.
+
+\subsection{Sägezahn}
+
+Fast wie das Dreieck, nur ohne das Runterzählen: Der Wert steigt schrittweise bis zur oberen Grenze und springt dann hart zurück auf die untere Grenze. Das ergibt die charakteristische Sägezahnform statt eines symmetrischen Dreiecks.
+
+\subsection{Sinus (DDS)}
+
+Der Sinus ist der aufwendigste Generator, weil ein echter Sinus sich nicht einfach hoch- und runterzählen lässt. Stattdessen kommt das DDS-Prinzip (Direct Digital Synthesis) zum Einsatz:
+
+\begin{enumerate}
+    \item Ein \emph{Phasenakkumulator} zählt mit jedem \texttt{tick\_en}-Puls um einen Schritt weiter, dessen Größe \texttt{P1} bestimmt. Ein voller Überlauf dieses Zählers entspricht genau einer vollen 360°-Umdrehung. Je größer \texttt{P1}, desto schneller dreht sich die Phase, desto höher die Frequenz.
+    \item Ein fertiger IP-Baustein (der \texttt{SIN}-Kern) übersetzt die aktuelle Phase über eine hinterlegte Sinustabelle in einen Rohwert.
+    \item Eine kleine Rechenpipeline skaliert diesen Rohwert auf die eingestellte Amplitude und verschiebt ihn von einem vorzeichenbehafteten Bereich in den Bereich 0--255, den der DAC erwartet.
+\end{enumerate}
+
+\section{Taster-Entprellung}
+
+Mechanische Taster \glqq prellen\grqq{}: Beim Drücken wechseln sie für ein paar Millisekunden mehrfach schnell zwischen 0 und 1, statt sauber einmal umzuschalten. Würde man das direkt auswerten, würde ein einziger Tastendruck als mehrere Tastendrücke gezählt. Das Modul \texttt{debounce} übernimmt deshalb einen neuen Tasterwert erst, wenn er eine festgelegte Zeit lang stabil ansteht, und synchronisiert das von außen kommende Signal zusätzlich über zwei Flipflops auf den Systemtakt. Erst danach wertet die \texttt{steuerung} den eigentlichen Tastendruck (die fallende Flanke) aus.
+
+\section{Der Mystery-Modus}
+
+Modus 6 ist ein kleines Extra, unabhängig von \texttt{P1}, \texttt{P2} und Amplitude. Was genau dieser Modus macht, verrät dieses Kapitel bewusst nicht, das findest du am besten selbst heraus, indem du ihn ausprobierst und dir anschließend den zugehörigen Code ansiehst.

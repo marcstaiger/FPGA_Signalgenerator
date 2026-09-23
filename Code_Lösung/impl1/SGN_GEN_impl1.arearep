@@ -1,0 +1,231 @@
+----------------------------------------------------------------------
+Report for cell Toplevel.TECH
+Register bits:  432 of 3864 (11.180%)
+I/O cells:      51
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               AND2         2          100.0
+                              CCU2B       190          100.0
+                             FADD2B        20          100.0
+                            FD1P3AX        32          100.0
+                            FD1P3AY         7          100.0
+                            FD1P3DX        56          100.0
+                            FD1P3IX        91          100.0
+                            FD1P3JX         2          100.0
+                            FD1S3AX        90          100.0
+                            FD1S3AY        22          100.0
+                            FD1S3IX       132          100.0
+                                GSR         1          100.0
+                                 IB         6          100.0
+                                INV        36          100.0
+                               LUT4       297          100.0
+                         MULT18X18B         2          100.0
+                              MUX21        48          100.0
+                                 OB        45          100.0
+                              PFUMX        27          100.0
+                            ROM16X1         6          100.0
+                           ROM256X1        16          100.0
+                             SP16KB         1          100.0
+SUB MODULES
+                                SIN         1
+                             SIN_U0         1
+                           debounce         1
+                        debounce_U1         1
+                        debounce_U2         1
+                        debounce_U3         1
+                        debounce_U4         1
+                        dreieck_gen         1
+                     frequenzteiler         1
+                            mystery         1
+                           rect_gen         1
+                      saegezahn_gen         1
+                          sinus_gen         1
+                          steuerung         1
+                              TOTAL      1143
+----------------------------------------------------------------------
+Report for cell saegezahn_gen.v1
+Instance Path : gen_saw
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        18            9.5
+                            FD1P3AX         8           25.0
+                            FD1P3IX        16           17.6
+                               LUT4        33           11.1
+                              PFUMX         1            3.7
+                              TOTAL        76
+----------------------------------------------------------------------
+Report for cell frequenzteiler.v1
+Instance Path : freqteiler_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        27           14.2
+                            FD1S3AX         3            3.3
+                            FD1S3IX        16           12.1
+                              TOTAL        46
+----------------------------------------------------------------------
+Report for cell dreieck_gen.v1
+Instance Path : gen_tri
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        23           12.1
+                            FD1P3AX         8           25.0
+                            FD1P3AY         1           14.3
+                            FD1P3IX        16           17.6
+                               LUT4        23            7.7
+                              PFUMX         2            7.4
+                              TOTAL        73
+----------------------------------------------------------------------
+Report for cell mystery.v1
+Instance Path : gen_mystery
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               AND2         1           50.0
+                              CCU2B        21           11.1
+                             FADD2B        10           50.0
+                            FD1P3DX        28           50.0
+                            FD1P3IX        11           12.1
+                            FD1S3AX        51           56.7
+                            FD1S3IX        16           12.1
+                                INV        18           50.0
+                               LUT4        30           10.1
+                         MULT18X18B         1           50.0
+                              MUX21        24           50.0
+                            ROM16X1         3           50.0
+                           ROM256X1         8           50.0
+                             SP16KB         1          100.0
+SUB MODULES
+                             SIN_U0         1
+                              TOTAL       224
+----------------------------------------------------------------------
+Report for cell SIN_U0.v1
+Instance Path : gen_mystery.sin_core_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               AND2         1           50.0
+                             FADD2B        10           50.0
+                            FD1P3DX        28           50.0
+                                INV        18           50.0
+                              MUX21        24           50.0
+                            ROM16X1         3           50.0
+                           ROM256X1         8           50.0
+                              TOTAL        92
+----------------------------------------------------------------------
+Report for cell rect_gen.v1
+Instance Path : gen_rect
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        18            9.5
+                            FD1P3AX         1            3.1
+                            FD1P3IX        16           17.6
+                               LUT4         2            0.7
+                              TOTAL        37
+----------------------------------------------------------------------
+Report for cell sinus_gen.v1
+Instance Path : gen_sin
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               AND2         1           50.0
+                              CCU2B         5            2.6
+                             FADD2B        10           50.0
+                            FD1P3AX        10           31.3
+                            FD1P3DX        28           50.0
+                            FD1S3AX        32           35.6
+                                INV        18           50.0
+                               LUT4         2            0.7
+                         MULT18X18B         1           50.0
+                              MUX21        24           50.0
+                            ROM16X1         3           50.0
+                           ROM256X1         8           50.0
+SUB MODULES
+                                SIN         1
+                              TOTAL       143
+----------------------------------------------------------------------
+Report for cell SIN.v1
+Instance Path : gen_sin.sin_core_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               AND2         1           50.0
+                             FADD2B        10           50.0
+                            FD1P3DX        28           50.0
+                                INV        18           50.0
+                              MUX21        24           50.0
+                            ROM16X1         3           50.0
+                           ROM256X1         8           50.0
+                              TOTAL        92
+----------------------------------------------------------------------
+Report for cell steuerung.v1
+Instance Path : control_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        78           41.1
+                            FD1P3AX         5           15.6
+                            FD1P3AY         6           85.7
+                            FD1P3IX        32           35.2
+                            FD1P3JX         2          100.0
+                            FD1S3AX         4            4.4
+                            FD1S3AY        22          100.0
+                            FD1S3IX       100           75.8
+                               LUT4       158           53.2
+                              PFUMX         8           29.6
+SUB MODULES
+                           debounce         1
+                        debounce_U1         1
+                        debounce_U2         1
+                        debounce_U3         1
+                        debounce_U4         1
+                              TOTAL       420
+----------------------------------------------------------------------
+Report for cell debounce.v1
+Instance Path : control_inst.db_plus
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        11            5.8
+                            FD1P3AY         1           14.3
+                            FD1S3AY         2            9.1
+                            FD1S3IX        20           15.2
+                               LUT4         7            2.4
+                              TOTAL        41
+----------------------------------------------------------------------
+Report for cell debounce_U1.v1
+Instance Path : control_inst.db_param
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        11            5.8
+                            FD1P3AY         1           14.3
+                            FD1S3AY         2            9.1
+                            FD1S3IX        20           15.2
+                               LUT4         7            2.4
+                              TOTAL        41
+----------------------------------------------------------------------
+Report for cell debounce_U2.v1
+Instance Path : control_inst.db_mode
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        11            5.8
+                            FD1P3AY         1           14.3
+                            FD1S3AY         2            9.1
+                            FD1S3IX        20           15.2
+                               LUT4         7            2.4
+                              TOTAL        41
+----------------------------------------------------------------------
+Report for cell debounce_U3.v1
+Instance Path : control_inst.db_minus
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        11            5.8
+                            FD1P3AY         1           14.3
+                            FD1S3AY         2            9.1
+                            FD1S3IX        20           15.2
+                               LUT4         7            2.4
+                              TOTAL        41
+----------------------------------------------------------------------
+Report for cell debounce_U4.v1
+Instance Path : control_inst.db_inc
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                              CCU2B        11            5.8
+                            FD1P3AY         1           14.3
+                            FD1S3AY         2            9.1
+                            FD1S3IX        20           15.2
+                               LUT4         7            2.4
+                              TOTAL        41

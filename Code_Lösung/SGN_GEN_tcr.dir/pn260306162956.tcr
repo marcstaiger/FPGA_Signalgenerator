@@ -1,0 +1,5 @@
+#Start recording tcl command: 3/5/2026 15:03:09
+#Project Location: C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code; Project name: SGN_GEN
+prj_project open "C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/SGN_GEN.ldf"
+prj_project archive -includeAll "C:/Users/staig/Documents/Uni/Master/Signalgenerator/Sicherungen/6.zip"
+#Stop recording: 3/6/2026 16:29:56
