@@ -1,11 +1,11 @@
 \chapter{Funktionsweise}
 \label{ch:funktionsweise}
 
-Nachdem Aufbau und Bedienung der Platine geklärt sind, geht es in diesem Kapitel um die interne Funktionsweise: Wie die einzelnen Module zusammenspielen und nach welchem Prinzip jedes von ihnen sein Signal erzeugt. Dieses Verständnis erleichtert später den Einstieg in den Code der einzelnen Module und zeigt, an welcher Stelle du selbst weiterbauen musst.
+Nachdem Aufbau und Bedienung der Platine geklärt sind, geht es in diesem Kapitel um die interne Funktionsweise, wie die einzelnen Module zusammenspielen und nach welchem Prinzip jedes von ihnen sein Signal erzeugt. Dieses Verständnis erleichtert später den Einstieg in den Code der einzelnen Module und zeigt, an welcher Stelle du selbst weiterbauen musst.
 
 \section{Architektur im Überblick}
 
-Der Signalgenerator besteht aus einer Handvoll Modulen, die alle vom \texttt{Toplevel} aus miteinander verdrahtet werden:
+Der Signalgenerator besteht aus einer Handvoll Modulen, die alle vom \texttt{Toplevel} aus miteinander verdrahtet werden.
 
 \begin{itemize}
     \item \textbf{Steuerung} wertet die fünf Taster aus und verwaltet, welcher Modus, welcher Parameter und welcher Wert gerade aktiv ist.
@@ -15,15 +15,17 @@ Der Signalgenerator besteht aus einer Handvoll Modulen, die alle vom \texttt{Top
     \item Der Ausgang geht 8 Bit breit, ein Pin pro Bit, auf den DAC und erzeugt dort die analoge Spannung, die du am Oszilloskop siehst.
 \end{itemize}
 
-Wichtig dabei: Alle vier Generatoren laufen fortlaufend, unabhängig davon, welcher Modus gerade angezeigt wird. Es wird also nicht zwischen ihnen \glqq umgeschaltet\grqq{} im Sinne von an/aus, der Multiplexer entscheidet nur, wessen Ausgabe gerade nach außen durchgereicht wird. Das hält die Schaltung einfach, weil kein Generator wissen muss, ob er gerade \glqq dran\grqq{} ist oder nicht.
+Wichtig dabei, alle vier Generatoren laufen fortlaufend, unabhängig davon, welcher Modus gerade angezeigt wird. Es wird also nicht zwischen ihnen \glqq umgeschaltet\grqq{} im Sinne von an/aus, der Multiplexer entscheidet nur, wessen Ausgabe gerade nach außen durchgereicht wird. Das hält die Schaltung einfach, weil kein Generator wissen muss, ob er gerade \glqq dran\grqq{} ist oder nicht.
 
 \section{Ein Takt, viele Geschwindigkeiten}
 
-Wie lassen sich aus einem einzigen, festen 50\,MHz-Systemtakt unterschiedlich schnelle Ausgabefrequenzen erzeugen? Der naheliegende, aber ungeeignete Ansatz wäre, selbst einen langsameren Takt zu erzeugen, zum Beispiel indem man ein Bit eines Zählers als Takt für andere Register verwendet, das kann auf Dauer zu Problemen führen, die sich erst auf der echten Hardware zeigen.
+Wie lassen sich aus einem einzigen, festen 50\,MHz-Systemtakt unterschiedlich schnelle Ausgabefrequenzen erzeugen? Dafür gibt es grundsätzlich zwei Möglichkeiten, entweder man erzeugt sich selbst einen langsameren Takt, zum Beispiel aus einem Bit eines Zählers, oder man lässt alle Register am echten Systemtakt und steuert stattdessen über ein Enable-Signal, wann ein neuer Wert übernommen wird.
 
-Die sauberere Lösung: \emph{alle} Register bleiben am echten Systemtakt, bekommen aber zusätzlich ein ganz normales Signal spendiert, das nur gelegentlich für einen Takt lang auf \texttt{1} geht, ein sogenanntes \emph{Enable-Signal}. Jedes Register prüft bei jeder Taktflanke: \glqq Ist das Enable-Signal gerade aktiv?\grqq{} und übernimmt einen neuen Wert nur dann. Ist es das nicht, bleibt der alte Wert einfach stehen, obwohl der Takt weiterläuft.
+Ein selbstgebauter, langsamerer Takt kann auf Dauer zu Problemen führen, die sich erst auf der echten Hardware zeigen. Die Variante mit Enable-Signal umgeht das, kostet dafür aber mehr Leistung, die Taktleitung läuft im ganzen Design durchgehend mit 50\,MHz, auch in den Teilen der Schaltung, die eigentlich viel langsamer arbeiten könnten. In diesem Projekt wird die Enable-Variante verwendet, \emph{alle} Register bleiben am echten Systemtakt, bekommen aber zusätzlich ein ganz normales Signal spendiert, das nur gelegentlich für einen Takt lang auf \texttt{1} geht, ein sogenanntes \emph{Enable-Signal}. Jedes Register prüft bei jeder Taktflanke, ob das Enable-Signal gerade aktiv ist, und übernimmt einen neuen Wert nur dann. Ist es das nicht, bleibt der alte Wert einfach stehen, obwohl der Takt weiterläuft.
 
-Im Projekt heißt dieses Signal \texttt{tick\_en} und wird vom Modul \texttt{frequenzteiler} erzeugt: Ein Zähler läuft im Systemtakt hoch und setzt \texttt{tick\_en} für genau einen Takt auf \texttt{1}, sobald er den Wert \texttt{P2} erreicht hat. Je größer \texttt{P2}, desto seltener feuert \texttt{tick\_en}, desto langsamer laufen alle Generatoren, und desto tiefer wird der erzeugte Ton. \texttt{P2} ist also der grobe, gemeinsame Geschwindigkeitsregler für das ganze System.
+Im Projekt heißt dieses Signal \texttt{tick\_en} und wird vom Modul \texttt{frequenzteiler} erzeugt. Ein Zähler läuft im Systemtakt hoch und setzt \texttt{tick\_en} für genau einen Takt auf \texttt{1}, sobald er den Wert \texttt{P2} erreicht hat. Je größer \texttt{P2}, desto seltener wird \texttt{tick\_en} aktiv, desto langsamer laufen alle Generatoren, und desto tiefer wird der erzeugte Ton. \texttt{P2} ist also der grobe, gemeinsame Geschwindigkeitsregler für das ganze System.
+
+Wichtig dabei, der Zähler im \texttt{frequenzteiler} ist einstufig, keine Kaskade mehrerer Zähler hintereinander. Deshalb lässt sich \texttt{tick\_en} auch einfach als Teilung beschreiben, \texttt{tick\_en} hat die Frequenz $\frac{50\,\text{MHz}}{\texttt{P2}}$. Das brauchst du später bei der Frequenzberechnung.
 
 \section{Wellenformerzeugung}
 
@@ -39,11 +41,11 @@ Hier zählt ein Wert schrittweise hoch bis zu einer oberen Grenze und dann wiede
 
 \subsection{Sägezahn}
 
-Fast wie das Dreieck, nur ohne das Runterzählen: Der Wert steigt schrittweise bis zur oberen Grenze und springt dann hart zurück auf die untere Grenze. Das ergibt die charakteristische Sägezahnform statt eines symmetrischen Dreiecks.
+Fast wie das Dreieck, nur ohne das Runterzählen. Der Wert steigt schrittweise bis zur oberen Grenze und springt dann hart zurück auf die untere Grenze. Das ergibt die charakteristische Sägezahnform statt eines symmetrischen Dreiecks.
 
 \subsection{Sinus (DDS)}
 
-Der Sinus ist der aufwendigste Generator, weil ein echter Sinus sich nicht einfach hoch- und runterzählen lässt. Stattdessen kommt das DDS-Prinzip (Direct Digital Synthesis) zum Einsatz:
+Der Sinus ist der aufwendigste Generator, weil ein echter Sinus sich nicht einfach hoch- und runterzählen lässt. Stattdessen kommt das DDS-Prinzip (Direct Digital Synthesis) zum Einsatz.
 
 \begin{enumerate}
     \item Ein \emph{Phasenakkumulator} zählt mit jedem \texttt{tick\_en}-Puls um einen Schritt weiter, dessen Größe \texttt{P1} bestimmt. Ein voller Überlauf dieses Zählers entspricht genau einer vollen 360°-Umdrehung. Je größer \texttt{P1}, desto schneller dreht sich die Phase, desto höher die Frequenz.
@@ -53,5 +55,4 @@ Der Sinus ist der aufwendigste Generator, weil ein echter Sinus sich nicht einfa
 
 \section{Tasterentprellung}
 
-Mechanische Taster \glqq prellen\grqq{}: Beim Drücken wechseln sie für ein paar Millisekunden mehrfach schnell zwischen 0 und 1, statt sauber einmal umzuschalten. Würde man das direkt auswerten, würde ein einziger Tastendruck als mehrere Tastendrücke gezählt. Das Modul \texttt{debounce} übernimmt deshalb einen neuen Tasterwert erst, wenn er eine festgelegte Zeit lang stabil ansteht, und synchronisiert das von außen kommende Signal zusätzlich über zwei Flipflops auf den Systemtakt. Erst danach wertet die \texttt{steuerung} den eigentlichen Tastendruck (die fallende Flanke) aus.
-
+Mechanische Taster \glqq prellen\grqq{}, beim Drücken wechseln sie für ein paar Millisekunden mehrfach schnell zwischen 0 und 1, statt sauber einmal umzuschalten. Würde man das direkt auswerten, würde ein einziger Tastendruck als mehrere Tastendrücke gezählt. Das Modul \texttt{debounce} übernimmt deshalb einen neuen Tasterwert erst, wenn er eine festgelegte Zeit lang stabil ansteht, und synchronisiert das von außen kommende Signal zusätzlich über zwei Flipflops auf den Systemtakt. Erst danach wertet die \texttt{steuerung} den eigentlichen Tastendruck (die fallende Flanke) aus.
