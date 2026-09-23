@@ -1,0 +1,5 @@
+#Start recording tcl command: 9/23/2026 08:35:14
+#Project Location: C:/Users/staig/Documents/Uni/Master/Signalgenerator/FPGA_Signalgenerator/Code_Lösung; Project name: SGN_GEN
+prj_project open "C:/Users/staig/Documents/Uni/Master/Signalgenerator/FPGA_Signalgenerator/Code_Lösung/SGN_GEN.ldf"
+prj_run Export -impl impl1 -task Bitgen -forceAll
+#Stop recording: 9/23/2026 08:36:40

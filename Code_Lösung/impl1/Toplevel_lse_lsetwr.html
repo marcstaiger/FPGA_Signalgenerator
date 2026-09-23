@@ -1,302 +1,0 @@
-<HTML>
-<HEAD><TITLE>Lattice Synthesis Timing Report</TITLE>
-<STYLE TYPE="text/css">
-<!--
- body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
--->
-</STYLE>
-</HEAD>
-<PRE><A name="Map_Twr"></A><B><U><big>Lattice Synthesis Timing Report</big></U></B>
---------------------------------------------------------------------------------
-Lattice Synthesis Timing Report, Version  
-Sat Aug 22 11:18:32 2026
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
-
-<A name="mtw1_ri"></A><B><U><big>Report Information</big></U></B>
-------------------
-Design:     Toplevel
-Constraint file:  
-Report level:    verbose report, limited to 3 items per constraint
---------------------------------------------------------------------------------
-
-
-
-================================================================================
-Constraint: create_clock -period 5.000000 -name clk0 [get_nets clk_c]
-            4096 items scored, 4096 timing errors detected.
---------------------------------------------------------------------------------
-
-
-Error:  The following path violates requirements by 11.095ns
-
- Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
-
-   Source:         FD1P3DX    CK             \gen_sin/sin_core_inst/FF_27  (from clk_c +)
-   Destination:    FD1P3DX    D              \gen_sin/sin_core_inst/FF_8  (to clk_c +)
-
-   Delay:                  16.022ns  (19.4% logic, 80.6% route), 12 logic levels.
-
- Constraint Details:
-
-     16.022ns data_path \gen_sin/sin_core_inst/FF_27 to \gen_sin/sin_core_inst/FF_8 violates
-      5.000ns delay constraint less
-      0.073ns L_S requirement (totaling 4.927ns) by 11.095ns
-
- Path Details: \gen_sin/sin_core_inst/FF_27 to \gen_sin/sin_core_inst/FF_8
-
-   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
-L_CO        ---     0.410             CK to Q              \gen_sin/sin_core_inst/FF_27 (from clk_c)
-Route         2   e 1.258                                  \gen_sin/sin_core_inst/rom_addr0_r
-LUT4        ---     0.259              A to Z              \gen_sin/sin_core_inst/INV_10
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/rom_addr0_r_inv
-LUT4        ---     0.259                to                \gen_sin/sin_core_inst/neg_rom_addr0_r_n_0
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/co0
-LUT4        ---     0.259                to                \gen_sin/sin_core_inst/neg_rom_addr0_r_n_1
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/co1
-LUT4        ---     0.259                to                \gen_sin/sin_core_inst/neg_rom_addr0_r_n_2
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/co2
-LUT4        ---     0.259                to                \gen_sin/sin_core_inst/neg_rom_addr0_r_n_3
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/co3
-LUT4        ---     0.259                to                \gen_sin/sin_core_inst/neg_rom_addr0_r_n_4
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/rom_addr0_r_n_7
-MUXL5       ---     0.105             D0 to Z              \gen_sin/sin_core_inst/muxb_16
-Route         9   e 1.459                                  \gen_sin/sin_core_inst/rom_addr0_r_n_15
-LUT4        ---     0.259          AD[4] to DO0            \gen_sin/sin_core_inst/LUT4_1
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/func_or_inet_1
-LUT4        ---     0.259          AD[4] to DO0            \gen_sin/sin_core_inst/LUT4_0
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/lx_ne0
-LUT4        ---     0.259              A to Z              \gen_sin/sin_core_inst/INV_1
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/lx_ne0_inv
-LUT4        ---     0.259              B to Z              \gen_sin/sin_core_inst/AND2_t0
-Route         1   e 1.020                                  \gen_sin/sin_core_inst/out_sel_i
-                  --------
-                   16.022  (19.4% logic, 80.6% route), 12 logic levels.
-
-
-Error:  The following path violates requirements by 11.095ns
-
- Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
-
-   Source:         FD1P3DX    CK             \gen_mystery/sin_core_inst/FF_27  (from clk_c +)
-   Destination:    FD1P3DX    D              \gen_mystery/sin_core_inst/FF_8  (to clk_c +)
-
-   Delay:                  16.022ns  (19.4% logic, 80.6% route), 12 logic levels.
-
- Constraint Details:
-
-     16.022ns data_path \gen_mystery/sin_core_inst/FF_27 to \gen_mystery/sin_core_inst/FF_8 violates
-      5.000ns delay constraint less
-      0.073ns L_S requirement (totaling 4.927ns) by 11.095ns
-
- Path Details: \gen_mystery/sin_core_inst/FF_27 to \gen_mystery/sin_core_inst/FF_8
-
-   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
-L_CO        ---     0.410             CK to Q              \gen_mystery/sin_core_inst/FF_27 (from clk_c)
-Route         2   e 1.258                                  \gen_mystery/sin_core_inst/rom_addr0_r
-LUT4        ---     0.259              A to Z              \gen_mystery/sin_core_inst/INV_10
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/rom_addr0_r_inv
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_0
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co0
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co1
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_2
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co2
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_3
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co3
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/rom_addr0_r_n_7
-MUXL5       ---     0.105             D0 to Z              \gen_mystery/sin_core_inst/muxb_16
-Route         9   e 1.459                                  \gen_mystery/sin_core_inst/rom_addr0_r_n_15
-LUT4        ---     0.259          AD[4] to DO0            \gen_mystery/sin_core_inst/LUT4_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/func_or_inet_1
-LUT4        ---     0.259          AD[4] to DO0            \gen_mystery/sin_core_inst/LUT4_0
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/lx_ne0
-LUT4        ---     0.259              A to Z              \gen_mystery/sin_core_inst/INV_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/lx_ne0_inv
-LUT4        ---     0.259              B to Z              \gen_mystery/sin_core_inst/AND2_t0
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/out_sel_i
-                  --------
-                   16.022  (19.4% logic, 80.6% route), 12 logic levels.
-
-
-Error:  The following path violates requirements by 9.816ns
-
- Logical Details:  Cell type  Pin type       Cell name  (clock net +/-)
-
-   Source:         FD1P3DX    CK             \gen_mystery/sin_core_inst/FF_26  (from clk_c +)
-   Destination:    FD1P3DX    D              \gen_mystery/sin_core_inst/FF_8  (to clk_c +)
-
-   Delay:                  14.743ns  (19.3% logic, 80.7% route), 11 logic levels.
-
- Constraint Details:
-
-     14.743ns data_path \gen_mystery/sin_core_inst/FF_26 to \gen_mystery/sin_core_inst/FF_8 violates
-      5.000ns delay constraint less
-      0.073ns L_S requirement (totaling 4.927ns) by 9.816ns
-
- Path Details: \gen_mystery/sin_core_inst/FF_26 to \gen_mystery/sin_core_inst/FF_8
-
-   Name    Fanout   Delay (ns)          Pins               Resource(Cell.Net)
-L_CO        ---     0.410             CK to Q              \gen_mystery/sin_core_inst/FF_26 (from clk_c)
-Route         2   e 1.258                                  \gen_mystery/sin_core_inst/rom_addr0_r_1
-LUT4        ---     0.259              A to Z              \gen_mystery/sin_core_inst/INV_11
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co0
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co1
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_2
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co2
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_3
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/co3
-LUT4        ---     0.259                to                \gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/rom_addr0_r_n_7
-MUXL5       ---     0.105             D0 to Z              \gen_mystery/sin_core_inst/muxb_16
-Route         9   e 1.459                                  \gen_mystery/sin_core_inst/rom_addr0_r_n_15
-LUT4        ---     0.259          AD[4] to DO0            \gen_mystery/sin_core_inst/LUT4_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/func_or_inet_1
-LUT4        ---     0.259          AD[4] to DO0            \gen_mystery/sin_core_inst/LUT4_0
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/lx_ne0
-LUT4        ---     0.259              A to Z              \gen_mystery/sin_core_inst/INV_1
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/lx_ne0_inv
-LUT4        ---     0.259              B to Z              \gen_mystery/sin_core_inst/AND2_t0
-Route         1   e 1.020                                  \gen_mystery/sin_core_inst/out_sel_i
-                  --------
-                   14.743  (19.3% logic, 80.7% route), 11 logic levels.
-
-Warning: 16.095 ns is the maximum delay for this constraint.
-
-
-<A name="mtw1_rs"></A><B><U><big>Timing Report Summary</big></U></B>
---------------
---------------------------------------------------------------------------------
-Constraint                              |   Constraint|       Actual|Levels
---------------------------------------------------------------------------------
-                                        |             |             |
-create_clock -period 5.000000 -name     |             |             |
-clk0 [get_nets clk_c]                   |     5.000 ns|    16.095 ns|    12 *
-                                        |             |             |
---------------------------------------------------------------------------------
-
-
-1 constraints not met.
-
---------------------------------------------------------------------------------
-Critical Nets                           |   Loads|  Errors| % of total
---------------------------------------------------------------------------------
-\control_inst/n3632                     |       9|    1956|     47.75%
-                                        |        |        |
-\control_inst/n329                      |       2|    1836|     44.82%
-                                        |        |        |
-\control_inst/n4741                     |       1|    1704|     41.60%
-                                        |        |        |
-\control_inst/n5332                     |       2|    1620|     39.55%
-                                        |        |        |
-\control_inst/n4742                     |       1|    1420|     34.67%
-                                        |        |        |
-\control_inst/n4_adj_638                |       8|    1408|     34.38%
-                                        |        |        |
-\control_inst/n12                       |       1|    1380|     33.69%
-                                        |        |        |
-\control_inst/n4740                     |       1|    1366|     33.35%
-                                        |        |        |
-\control_inst/n3664                     |       1|    1312|     32.03%
-                                        |        |        |
-\control_inst/n3666                     |       2|    1312|     32.03%
-                                        |        |        |
-\control_inst/n8                        |       1|    1220|     29.79%
-                                        |        |        |
-\control_inst/n1059                     |       9|    1056|     25.78%
-                                        |        |        |
-\control_inst/n3658                     |       1|    1012|     24.71%
-                                        |        |        |
-\control_inst/n5456                     |       1|     864|     21.09%
-                                        |        |        |
-\control_inst/n25                       |       1|     832|     20.31%
-                                        |        |        |
-\control_inst/n22                       |       1|     828|     20.21%
-                                        |        |        |
-\control_inst/n28                       |       1|     592|     14.45%
-                                        |        |        |
-\control_inst/n31                       |       1|     592|     14.45%
-                                        |        |        |
-\control_inst/n5798                     |       1|     464|     11.33%
-                                        |        |        |
-\control_inst/n4535                     |       1|     440|     10.74%
-                                        |        |        |
-inc_val_reg[3]                          |      13|     416|     10.16%
-                                        |        |        |
-sig_amp[3]                              |      14|     416|     10.16%
-                                        |        |        |
---------------------------------------------------------------------------------
-
-
-<A name="mtw1_ts"></A><B><U><big>Timing summary:</big></U></B>
----------------
-
-Timing errors: 4096  Score: 22982588
-
-Constraints cover  25741 paths, 1271 nets, and 3110 connections (88.9% coverage)
-
-
-Peak memory: 111853568 bytes, TRCE: 5713920 bytes, DLYMAN: 0 bytes
-CPU_TIME_REPORT: 0 secs 
-
-
-
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-</PRE></FONT>
-</BODY>
-</HTML>

@@ -1,327 +1,0 @@
-<HTML>
-<HEAD><TITLE>Synthesis and Ngdbuild Report</TITLE>
-<STYLE TYPE="text/css">
-<!--
- body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
--->
-</STYLE>
-</HEAD>
-<PRE><A name="Syn"></A><B><U><big>Synthesis and Ngdbuild  Report</big></U></B>
-synthesis:  version Diamond (64-bit) 3.14.0.75.2
-
-Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
-Copyright (c) 1995 AT&T Corp.   All rights reserved.
-Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
-Copyright (c) 2001 Agere Systems   All rights reserved.
-Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights reserved.
-Sat Aug 22 11:18:30 2026
-
-
-Command Line:  synthesis -f SGN_GEN_impl1_lattice.synproj -gui -msgset C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/promote.xml 
-
-Synthesis options:
-The -a option is LatticeXP2.
-The -s option is 6.
-The -t option is TQFP144.
-The -d option is LFXP2-5E.
-Using package TQFP144.
-Using performance grade 6.
-                                                          
-
-##########################################################
-
-### Lattice Family : LatticeXP2
-
-### Device  : LFXP2-5E
-
-### Package : TQFP144
-
-### Speed   : 6
-
-##########################################################
-
-                                                          
-
-INFO - synthesis: User-Selected Strategy Settings
-Optimization goal = Timing
-Top-level module name = Toplevel.
-Target frequency = 200.000000 MHz.
-Maximum fanout = 1000.
-Timing path count = 3
-BRAM utilization = 100.000000 %
-DSP usage = true
-DSP utilization = 100.000000 %
-fsm_encoding_style = auto
-resolve_mixed_drivers = 0
-fix_gated_clocks = 0
-
-Mux style = Auto
-Use Carry Chain = true
-carry_chain_length = 0
-Loop Limit = 1950.
-Use IO Insertion = TRUE
-Use IO Reg = AUTO
-
-Resource Sharing = TRUE
-Propagate Constants = TRUE
-Remove Duplicate Registers = TRUE
-force_gsr = auto
-ROM style = auto
-RAM style = auto
-The -comp option is FALSE.
-The -syn option is FALSE.
--p C:/lscc/diamond/3.14/ispfpga/mg5a00/data (searchpath added)
--p C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/impl1 (searchpath added)
--p C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code (searchpath added)
-VHDL library = work
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/toplevel.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/rect_gen.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/dreieck_gen.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/SIN.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/sinus_gen.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/saegezahn_gen.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/steuerung.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/debounce.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/mystery.vhd
-VHDL design file = C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/frequenzteiler.vhd
-NGD file = SGN_GEN_impl1.ngd
--sdc option: SDC file input not used.
--lpf option: Output file option is ON.
-Hardtimer checking is enabled (default). The -dt option is not used.
-The -r option is OFF. [ Remove LOC Properties is OFF. ]
-Analyzing Verilog file C:/lscc/diamond/3.14/ispfpga/userware/NT/SYNTHESIS_HEADERS/xp2.v. VERI-1482
-Compile design.
-Compile Design Begin
-INFO - synthesis: The default VHDL library search path is now "C:/Users/staig/Documents/Uni/Master/Signalgenerator/Code/impl1". VHDL-1504
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/debounce.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/debounce.vhd(16): analyzing entity debounce. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/debounce.vhd(29): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/steuerung.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/steuerung.vhd(15): analyzing entity steuerung. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/steuerung.vhd(40): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/frequenzteiler.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/frequenzteiler.vhd(15): analyzing entity frequenzteiler. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/frequenzteiler.vhd(23): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/rect_gen.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/rect_gen.vhd(14): analyzing entity rect_gen. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/rect_gen.vhd(25): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/dreieck_gen.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/dreieck_gen.vhd(15): analyzing entity dreieck_gen. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/dreieck_gen.vhd(27): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/sin.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/sin.vhd(14): analyzing entity sin. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/sin.vhd(23): analyzing architecture structure. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/sinus_gen.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/sinus_gen.vhd(17): analyzing entity sinus_gen. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/sinus_gen.vhd(27): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/saegezahn_gen.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/saegezahn_gen.vhd(14): analyzing entity saegezahn_gen. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/saegezahn_gen.vhd(25): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/mystery.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/mystery.vhd(11): analyzing entity mystery. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/mystery.vhd(19): analyzing architecture rtl. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-Analyzing VHDL file c:/users/staig/documents/uni/master/signalgenerator/code/toplevel.vhd. VHDL-1481
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/toplevel.vhd(25): analyzing entity toplevel. VHDL-1012
-INFO - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/toplevel.vhd(66): analyzing architecture arch. VHDL-1010
-unit Toplevel is not yet analyzed. VHDL-1485
-unit Toplevel is not yet analyzed. VHDL-1485
-c:/users/staig/documents/uni/master/signalgenerator/code/toplevel.vhd(25): executing Toplevel(arch)
-
-WARNING - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/toplevel.vhd(64): replacing existing netlist Toplevel(arch). VHDL-1205
-Top module name (VHDL): Toplevel
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/mg5a00/data/mg5alib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5a00/data/ep5alib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5g00/data/ep5glib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/or5g00/data/orc5glib.ngl'...
-Loading device for application map from file 'mg5a26x29.nph' in environment: C:/lscc/diamond/3.14/ispfpga.
-Package Status:                     Final          Version 1.42.
-Top-level module name = Toplevel.
-
-
-
-Removed duplicate sequential element \gen_mystery/phase_acc_ret0(10 bit), because it is equivalent to \gen_mystery/phase_acc_ret3
-
-######## Missing driver on net n2292. Patching with GND.
-######## Missing driver on net n2291. Patching with GND.
-######## Missing driver on net n2290. Patching with GND.
-######## Missing driver on net n2289. Patching with GND.
-######## Missing driver on net n2288. Patching with GND.
-######## Missing driver on net n2287. Patching with GND.
-WARNING - synthesis: c:/users/staig/documents/uni/master/signalgenerator/code/steuerung.vhd(149): Register \control_inst/inc_val_reg_i4 is stuck at Zero. VDB-5013
-GSR will not be inferred because no asynchronous signal was found in the netlist.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i0 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i3 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i5 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i6 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i7 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i8 will be ignored.
-WARNING - synthesis: Initial value found on instance \control_inst/p2_reg_i9 will be ignored.
-Duplicate register/latch removal. \control_inst/inc_val_reg_i5 is a one-to-one match with \control_inst/inc_val_reg_i6.
-Duplicate register/latch removal. \control_inst/inc_val_reg_i7 is a one-to-one match with \control_inst/inc_val_reg_i8.
-Duplicate register/latch removal. \control_inst/inc_val_reg_i9 is a one-to-one match with \control_inst/inc_val_reg_i7.
-Applying 200.000000 MHz constraint to all clocks
-
-WARNING - synthesis: No user .sdc file.
-Results of NGD DRC are available in Toplevel_drc.log.
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/mg5a00/data/mg5alib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5a00/data/ep5alib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5g00/data/ep5glib.ngl'...
-Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/or5g00/data/orc5glib.ngl'...
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_0/S0' has no load.
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4/C1' has no load.
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4/S1' has no load.
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_0/S0' has no load.
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_4/C1' has no load.
-WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_4/S1' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_0/S0' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_4/C1' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_4/S1' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_0/S0' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_4/C1' has no load.
-WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_4/S1' has no load.
-WARNING - synthesis: DRC complete with 12 warnings.
-All blocks are expanded and NGD expansion is successful.
-Writing NGD file SGN_GEN_impl1.ngd.
-
-################### Begin Area Report (Toplevel)######################
-Number of register bits => 432 of 3864 (11 % )
-AND2 => 2
-CCU2B => 190
-FADD2B => 20
-FD1P3AX => 32
-FD1P3AY => 7
-FD1P3DX => 56
-FD1P3IX => 91
-FD1P3JX => 2
-FD1S3AX => 90
-FD1S3AY => 22
-FD1S3IX => 132
-GSR => 1
-IB => 6
-INV => 36
-MULT18X18B => 2
-MUX21 => 48
-OB => 45
-ORCALUT4 => 297
-PFUMX => 27
-ROM16X1 => 6
-ROM256X1 => 16
-SP16KB => 1
-################### End Area Report ##################
-
-################### Begin Clock Report ######################
-Clock Nets
-Number of Clocks: 1
-  Net : clk_c, loads : 433
-Clock Enable Nets
-Number of Clock Enables: 14
-Top 10 highest fanout Clock Enables:
-  Net : gen_tri/clk_c_enable_103, loads : 25
-  Net : gen_saw/clk_c_enable_58, loads : 24
-  Net : control_inst/clk_c_enable_94, loads : 16
-  Net : control_inst/clk_c_enable_95, loads : 16
-  Net : gen_mystery/tick_en, loads : 13
-  Net : control_inst/inc_val_reg_15__N_147, loads : 6
-  Net : control_inst/param_sel_reg_1__N_128, loads : 2
-  Net : control_inst/db_param/clk_c_enable_38, loads : 1
-  Net : control_inst/db_plus/clk_c_enable_32, loads : 1
-  Net : control_inst/db_mode/clk_c_enable_35, loads : 1
-Highest fanout non-clock nets
-Top 10 highest fanout non-clock nets:
-  Net : control_inst/db_minus/sw6_clean, loads : 51
-  Net : freqteiler_inst/clk_c_enable_104, loads : 49
-  Net : control_inst/sw6_d, loads : 49
-  Net : control_inst/sig_mode_1, loads : 40
-  Net : control_inst/sig_mode_0, loads : 36
-  Net : control_inst/param_sel_reg_0, loads : 29
-  Net : control_inst/param_sel_reg_1, loads : 27
-  Net : gen_tri/clk_c_enable_103, loads : 25
-  Net : gen_saw/clk_c_enable_58, loads : 24
-  Net : gen_mystery/note_index_0, loads : 21
-################### End Clock Report ##################
-
-<A name="lse_trs"></A><B><U><big>Timing Report Summary</big></U></B>
---------------
---------------------------------------------------------------------------------
-Constraint                              |   Constraint|       Actual|Levels
---------------------------------------------------------------------------------
-                                        |             |             |
-create_clock -period 5.000000 -name     |             |             |
-clk0 [get_nets clk_c]                   |  200.000 MHz|   62.131 MHz|    12 *
-                                        |             |             |
---------------------------------------------------------------------------------
-
-
-1 constraints not met.
-
-
-Peak Memory Usage: 107.270  MB
-
---------------------------------------------------------------
-Elapsed CPU time for LSE flow : 1.172  secs
---------------------------------------------------------------
-
-
-
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-<BR>
-</PRE></FONT>
-</BODY>
-</HTML>

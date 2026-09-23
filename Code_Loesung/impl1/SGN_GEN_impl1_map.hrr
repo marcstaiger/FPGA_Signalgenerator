@@ -1,0 +1,308 @@
+---------------------------------------------------
+Report for cell Toplevel
+   Instance path: Toplevel
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     557.00        100.0
+                                  LUT4	     507.00        100.0
+                                 IOBUF	         51        100.0
+                                PFUREG	        432        100.0
+                                RIPPLE	        210        100.0
+                                   EBR	          1        100.0
+                            MULT18X18B	          2        100.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                         saegezahn_gen	          1         7.0
+                             sinus_gen	          1        17.1
+                             steuerung	          1        31.6
+                              rect_gen	          1         3.5
+                               mystery	          1        22.9
+                        frequenzteiler	          1         5.1
+                           dreieck_gen	          1         6.9
+---------------------------------------------------
+Report for cell saegezahn_gen
+   Instance path: Toplevel/gen_saw
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      39.00         7.0
+                                  LUT4	      33.00         6.5
+                                PFUREG	         24         5.6
+                                RIPPLE	         18         8.6
+---------------------------------------------------
+Report for cell frequenzteiler
+   Instance path: Toplevel/freqteiler_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      28.50         5.1
+                                PFUREG	         19         4.4
+                                RIPPLE	         27        12.9
+---------------------------------------------------
+Report for cell dreieck_gen
+   Instance path: Toplevel/gen_tri
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      38.50         6.9
+                                  LUT4	      23.00         4.5
+                                PFUREG	         25         5.8
+                                RIPPLE	         23        11.0
+---------------------------------------------------
+Report for cell mystery
+   Instance path: Toplevel/gen_mystery
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     127.50        22.9
+                                  LUT4	     135.00        26.6
+                                PFUREG	        106        24.5
+                                RIPPLE	         31        14.8
+                                   EBR	          1        100.0
+                            MULT18X18B	          1        50.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                                SIN_U0	          1        12.9
+---------------------------------------------------
+Report for cell SIN_U0
+   Instance path: Toplevel/gen_mystery/sin_core_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      72.00        12.9
+                                  LUT4	     105.00        20.7
+                                PFUREG	         28         6.5
+                                RIPPLE	         10         4.8
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                                FADD2B	         10         0.9
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_addr0_r_n_0
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_addr0_r_n_1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_addr0_r_n_2
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_addr0_r_n_3
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_dout_n_0
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_dout_n_1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_dout_n_2
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_dout_n_3
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_mystery/sin_core_inst/neg_rom_dout_n_4
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell rect_gen
+   Instance path: Toplevel/gen_rect
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      19.50         3.5
+                                  LUT4	       2.00         0.4
+                                PFUREG	         17         3.9
+                                RIPPLE	         18         8.6
+---------------------------------------------------
+Report for cell sinus_gen
+   Instance path: Toplevel/gen_sin
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      95.00        17.1
+                                  LUT4	     107.00        21.1
+                                PFUREG	         70        16.2
+                                RIPPLE	         15         7.1
+                            MULT18X18B	          1        50.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                                   SIN	          1        12.9
+---------------------------------------------------
+Report for cell SIN
+   Instance path: Toplevel/gen_sin/sin_core_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      72.00        12.9
+                                  LUT4	     105.00        20.7
+                                PFUREG	         28         6.5
+                                RIPPLE	         10         4.8
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                                FADD2B	         10         0.9
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_addr0_r_n_0
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_addr0_r_n_1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_addr0_r_n_2
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_addr0_r_n_3
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_addr0_r_n_4
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_dout_n_0
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_dout_n_1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_dout_n_2
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_dout_n_3
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell FADD2B
+   Instance path: Toplevel/gen_sin/sin_core_inst/neg_rom_dout_n_4
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.2
+                                RIPPLE	          1         0.5
+---------------------------------------------------
+Report for cell steuerung
+   Instance path: Toplevel/control_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     175.92        31.6
+                                  LUT4	     151.67        29.9
+                                PFUREG	        171        39.6
+                                RIPPLE	         78        37.1
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                           debounce_U3	          1         3.1
+                           debounce_U4	          1         3.1
+                           debounce_U1	          1         3.1
+                           debounce_U2	          1         3.0
+                              debounce	          1         3.1
+---------------------------------------------------
+Report for cell debounce
+   Instance path: Toplevel/control_inst/db_plus
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      17.17         3.1
+                                  LUT4	       7.00         1.4
+                                PFUREG	         23         5.3
+                                RIPPLE	         11         5.2
+---------------------------------------------------
+Report for cell debounce_U1
+   Instance path: Toplevel/control_inst/db_param
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      17.17         3.1
+                                  LUT4	       7.00         1.4
+                                PFUREG	         23         5.3
+                                RIPPLE	         11         5.2
+---------------------------------------------------
+Report for cell debounce_U2
+   Instance path: Toplevel/control_inst/db_mode
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      16.67         3.0
+                                  LUT4	       7.00         1.4
+                                PFUREG	         23         5.3
+                                RIPPLE	         11         5.2
+---------------------------------------------------
+Report for cell debounce_U3
+   Instance path: Toplevel/control_inst/db_minus
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      17.17         3.1
+                                  LUT4	       7.00         1.4
+                                PFUREG	         23         5.3
+                                RIPPLE	         11         5.2
+---------------------------------------------------
+Report for cell debounce_U4
+   Instance path: Toplevel/control_inst/db_inc
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      17.17         3.1
+                                  LUT4	       7.00         1.4
+                                PFUREG	         23         5.3
+                                RIPPLE	         11         5.2

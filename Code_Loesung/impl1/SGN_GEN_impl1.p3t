@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "SGN_GEN_impl1.log"
+-o "SGN_GEN_impl1.csv"
+-pr "SGN_GEN_impl1.prf"

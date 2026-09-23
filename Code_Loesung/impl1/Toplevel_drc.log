@@ -1,0 +1,28 @@
+Results of NGD DRC are available in Toplevel_drc.log.
+Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/mg5a00/data/mg5alib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5a00/data/ep5alib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/ep5g00/data/ep5glib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.14/ispfpga/or5g00/data/orc5glib.ngl'...
+
+
+Running DRC...
+
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_0/S0' has no load.
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4/C1' has no load.
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_addr0_r_n_4/S1' has no load.
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_0/S0' has no load.
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_4/C1' has no load.
+WARNING - synthesis: logical net 'gen_mystery/sin_core_inst/neg_rom_dout_n_4/S1' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_0/S0' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_4/C1' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_addr0_r_n_4/S1' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_0/S0' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_4/C1' has no load.
+WARNING - synthesis: logical net 'gen_sin/sin_core_inst/neg_rom_dout_n_4/S1' has no load.
+WARNING - synthesis: DRC complete with 12 warnings.
+
+Design Results:
+   1132 blocks expanded
+completed the first expansion
+All blocks are expanded and NGD expansion is successful.
+Writing NGD file SGN_GEN_impl1.ngd.
