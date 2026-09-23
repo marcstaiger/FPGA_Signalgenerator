@@ -42,7 +42,7 @@ begin
     begin
 
 
--- hier war der böse Code Wurm zu gegen, er hatte ein schmackhaftes Mitagessen XD
+-- hier war der bÃ¶se Code-Wurm zugegen, er hatte ein schmackhaftes Mittagessen XD
     end process;
 
     out_8bit <= std_logic_vector(current_val);

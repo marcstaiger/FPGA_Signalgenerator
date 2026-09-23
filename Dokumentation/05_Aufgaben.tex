@@ -5,21 +5,25 @@ Die folgenden Aufgaben bauen aufeinander auf: Zuerst geht es darum, den erklärt
 \section{Fehlende Codeteile rekonstruieren}
 \label{sec:fehlende-codeteile}
 
-In eurem Projektordner sind an einigen Stellen Codezeilen nicht mehr vorhanden, offenbar hat sich ein code-fressender Wurm durch die Dateien gefressen. Die betroffenen Stellen sind mit \texttt{-- TODO} markiert. Arbeite die Module in dieser Reihenfolge durch, sie bauen von einfach zu anspruchsvoll aufeinander auf. Nach jedem Schritt: kompilieren, die betroffene Wellenform am Oszilloskop prüfen, erst dann weiter zum nächsten Modul.
+In eurem Projektordner sind an einigen Stellen Codezeilen nicht mehr vorhanden, offenbar hat sich ein hungriger Wurm durch die Dateien gefressen. Die betroffenen Stellen sind mit \texttt{-- TODO} markiert. Arbeite die Module in dieser Reihenfolge durch, sie bauen von einfach zu anspruchsvoll aufeinander auf. Nach jedem Schritt kompilieren und die betroffene Wellenform am Oszilloskop prüfen, erst dann weiter zum nächsten Modul.
 
-\subsection*{1. rect\_gen.vhd}
+\subsection*{1. frequenzteiler.vhd}
+
+Der Grundbaustein für alles Weitere: \texttt{tick\_out} muss alle \texttt{divisor\_in} Systemtakte für genau einen Takt auf \texttt{'1'} gehen. Dazu zählt \texttt{counter} bei jedem Takt hoch, bei Erreichen von \texttt{divisor\_in - 1} wird \texttt{counter} zurückgesetzt und \texttt{tick\_reg} für diesen einen Takt auf \texttt{'1'} gesetzt, sonst bleibt \texttt{tick\_reg} auf \texttt{'0'}. Ohne dieses Modul bekommt keiner der Generatoren sein \texttt{tick\_en}, es lohnt sich also, hier zuerst anzusetzen.
+
+\subsection*{2. rect\_gen.vhd}
 
 Der Rechteckgenerator ist der einfachste Fall, hier zählst du nur einen Zähler hoch und schaltest bei Erreichen einer Grenze um. Im \texttt{process} fehlt genau das: \texttt{counter} muss bei jedem \texttt{tick\_en}-Puls um 1 erhöht werden, und sobald er \texttt{ticks\_per\_phase} erreicht, muss er auf 0 zurückgesetzt und \texttt{state} umgeschaltet (invertiert) werden. Wie \texttt{state} danach den Ausgang steuert, steht schon fertig unten im Code, das musst du nicht anfassen.
 
-\subsection*{2. dreieck\_gen.vhd}
+\subsection*{3. dreieck\_gen.vhd}
 
-Fast derselbe Zähler-Mechanismus wie eben, nur zählt hier zusätzlich \texttt{current\_val} selbst hoch oder runter, gesteuert über \texttt{is\_rising}. Fehlt: Wenn die Schrittdauer (\texttt{tick\_counter} gegen \texttt{ticks\_limit}) erreicht ist, muss \texttt{current\_val} je nach \texttt{is\_rising} um 1 erhöht oder verringert werden. Erreicht \texttt{current\_val} dabei \texttt{max\_val}, kippt \texttt{is\_rising} auf \texttt{'0'} (jetzt fallend), erreicht es \texttt{min\_val}, kippt es zurück auf \texttt{'1'} (jetzt steigend).
+Fast derselbe Zählermechanismus wie eben, nur zählt hier zusätzlich \texttt{current\_val} selbst hoch oder runter, gesteuert über \texttt{is\_rising}. Fehlt: Wenn die Schrittdauer (\texttt{tick\_counter} gegen \texttt{ticks\_limit}) erreicht ist, muss \texttt{current\_val} je nach \texttt{is\_rising} um 1 erhöht oder verringert werden. Erreicht \texttt{current\_val} dabei \texttt{max\_val}, kippt \texttt{is\_rising} auf \texttt{'0'} (jetzt fallend), erreicht es \texttt{min\_val}, kippt es zurück auf \texttt{'1'} (jetzt steigend).
 
-\subsection*{3. saegezahn\_gen.vhd}
+\subsection*{4. saegezahn\_gen.vhd}
 
-Wieder derselbe Zähler-Mechanismus, diesmal ohne Richtungswechsel: \texttt{current\_val} zählt nur hoch. Fehlt: bei Erreichen der Schrittdauer entweder \texttt{current\_val} um 1 erhöhen, oder, falls \texttt{max\_val} bereits erreicht ist, hart zurück auf \texttt{min\_val} springen (kein Herunterzählen wie beim Dreieck).
+Wieder derselbe Zählermechanismus, diesmal ohne Richtungswechsel: \texttt{current\_val} zählt nur hoch. Fehlt: bei Erreichen der Schrittdauer entweder \texttt{current\_val} um 1 erhöhen, oder, falls \texttt{max\_val} bereits erreicht ist, hart zurück auf \texttt{min\_val} springen (kein Herunterzählen wie beim Dreieck).
 
-\subsection*{4. Den SIN-Kern erzeugen}
+\subsection*{5. Den SIN-Kern erzeugen}
 \label{sec:sin-kern}
 
 Für den nächsten Schritt, den Sinusgenerator, wird ein fertiger IP-Baustein für die Sinustabelle gebraucht. Die Datei \texttt{SIN.vhd} fehlt aktuell komplett und muss über IPexpress neu erzeugt werden, sonst lässt sich ab hier nichts mehr kompilieren (auch der Mystery-Modus aus Aufgabe~\ref{sec:mystery-melodie} braucht denselben Kern).
@@ -51,19 +55,20 @@ Im Konfigurationsdialog müssen folgende Einstellungen gesetzt werden, damit der
 
 Mit \emph{Generate} wird \texttt{SIN.vhd} neu erzeugt.
 
-\subsection*{5. sinus\_gen.vhd}
+\subsection*{6. sinus\_gen.vhd}
 
-Der eigentliche DDS-Kern aus Kapitel~\ref{ch:funktionsweise}, hier fehlt gleich zweimal etwas. Erstens: \texttt{phase\_acc} muss bei jedem \texttt{tick\_en}-Puls um \texttt{phase\_inc} erhöht werden (auf die 10 Bit des Akkumulators resized). Zweitens, in der Skalierungs-Pipeline nach dem SIN-Kern: \texttt{sine\_raw} muss vorzeichenrichtig auf 16 Bit erweitert, mit \texttt{amp\_in} multipliziert, um 8 Bit runterskaliert und danach um 128 verschoben werden, damit aus dem vorzeichenbehafteten Sinuswert (-128..127) ein für den DAC gültiger Wert (0..255) wird. Die genauen vier Pipeline-Schritte stehen als Kommentar im Code.
+Der eigentliche DDS-Kern aus Kapitel~\ref{ch:funktionsweise}, hier fehlt gleich zweimal etwas. Erstens: \texttt{phase\_acc} muss bei jedem \texttt{tick\_en}-Puls um \texttt{phase\_inc} erhöht werden (auf die 10 Bit des Akkumulators resized). Zweitens, in der Skalierungspipeline nach dem SIN-Kern: \texttt{sine\_raw} muss vorzeichenrichtig auf 16 Bit erweitert, mit \texttt{amp\_in} multipliziert, um 8 Bit runterskaliert und danach um 128 verschoben werden, damit aus dem vorzeichenbehafteten Sinuswert (-128..127) ein für den DAC gültiger Wert (0..255) wird. Die genauen vier Schritte der Pipeline stehen als Kommentar im Code.
 
-\subsection*{6. debounce.vhd}
+\subsection*{7. debounce.vhd}
+
 
 Hier fehlt die eigentliche Entprellungslogik: \texttt{counter} muss hochzählen, solange sich \texttt{sync1} vom zuletzt übernommenen \texttt{stable\_val} unterscheidet. Erreicht \texttt{counter} dabei \texttt{DEBOUNCE\_CYCLES}, wird \texttt{sync1} als neuer \texttt{stable\_val} übernommen und \texttt{counter} zurückgesetzt. Stimmen \texttt{sync1} und \texttt{stable\_val} dagegen schon überein (kein Prellen mehr erkannt), wird \texttt{counter} ebenfalls zurückgesetzt.
 
-\subsection*{7. steuerung.vhd}
+\subsection*{8. steuerung.vhd}
 
 Taster 5 (Wert erhöhen) ist bereits vollständig implementiert, schau ihn dir als Vorlage an. Fehlt: Taster 6 (Wert verringern), spiegelbildlich zu Taster 5, aber mit einer Besonderheit: \texttt{unsigned} kann nicht negativ werden. \texttt{p1\_reg} und \texttt{p2\_reg} müssen deshalb bei 1 stehen bleiben (nicht bei 0), \texttt{amp\_reg} bei 0.
 
-\subsection*{8. toplevel.vhd}
+\subsection*{9. toplevel.vhd}
 
 Der letzte und wichtigste Schritt: der Multiplexer, der alle Generatoren zusammenführt. Erst wenn der steht, läuft das Gesamtsystem. Fehlt: eine \texttt{with sig\_mode select}-Zuweisung auf \texttt{final\_signal}, die je nach Modus die passende Wellenform durchreicht: \texttt{"001"} Sinus, \texttt{"010"} stumm (\texttt{x"00"}), \texttt{"011"} Dreieck, \texttt{"100"} Rechteck, \texttt{"101"} Sägezahn, \texttt{"110"} Mystery, alle anderen Werte ebenfalls stumm.
 
@@ -87,7 +92,7 @@ Suche dir eine mathematische Funktion deiner Wahl aus, zum Beispiel eine Betrags
 \section{Eigenen Ton für den Mystery-Modus}
 \label{sec:mystery-melodie}
 
-In \texttt{mystery.vhd} ist so gut wie nichts mehr übrig, der Wurm hatte hier besonderen Appetit. Deine Aufgabe: Bau dir selbst einen Ton-Player, der bei Modus 6 etwas Hörbares ausgibt.
+In \texttt{mystery.vhd} ist so gut wie nichts mehr übrig, der Wurm hatte hier besonderen Appetit. Deine Aufgabe: Bau dir selbst etwas, das bei Modus 6 einen Ton ausgibt.
 
 Orientiere dich dabei am Sinusgenerator aus Aufgabe~\ref{sec:fehlende-codeteile}, gleiches DDS-Prinzip, derselbe SIN-Kern. Der Unterschied: die Frequenz kommt hier nicht über einen Taster, sondern soll sich automatisch nach einer festen Zeit ändern. Für den Anfang reicht es, wenn dabei irgendein fester Ton zu hören ist, das zeigt schon, dass Zeittaktung, Phasenakkumulator und SIN-Kern richtig zusammenspielen.
 

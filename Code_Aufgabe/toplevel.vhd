@@ -87,23 +87,7 @@ architecture arch of Toplevel is
     signal amp_hi : unsigned(7 downto 0);
     signal amp_lo : unsigned(7 downto 0);
 
-    -- Party-Modus fuer Modus 6: statt der normalen Anzeige blinken alle LEDs
-    -- in einem von vier Mustern durch. light_state kommt direkt aus den
-    -- unteren beiden Bits von mystery_note, wechselt also automatisch mit
-    -- jeder neuen Note im Takt der Melodie.
-    signal led_param_normal : std_logic_vector(2 downto 0);
-    signal led_W_normal     : std_logic_vector(15 downto 0);
-    signal led_Modus_normal : std_logic_vector(5 downto 0);
-    signal led_inc_normal   : std_logic_vector(3 downto 0);
-
-    signal mystery_note : std_logic_vector(3 downto 0);
-    signal light_state  : std_logic_vector(1 downto 0);
-
-    -- die vier LED-Muster, bevor sie mit der normalen Anzeige gemischt werden
-    signal led_param_party : std_logic_vector(2 downto 0);
-    signal led_inc_party   : std_logic_vector(3 downto 0);
-    signal led_Modus_party : std_logic_vector(5 downto 0);
-    signal led_W_party     : std_logic_vector(15 downto 0);
+    signal mystery_note : std_logic_vector(3 downto 0);  -- Notennummer aus mystery, siehe Zusatzaufgabe
 
 begin
 
@@ -122,14 +106,11 @@ begin
             amplitude_out     => sig_amp,
             p1_out            => sig_p1,
             p2_out            => sig_p2,
-            led_W_out         => led_W_normal,
-            led_Modus_out     => led_Modus_normal,
-            flag_inc_status   => led_inc_normal,
-            flag_param_status => led_param_normal
+            led_W_out         => led_W,
+            led_Modus_out     => led_Modus,
+            flag_inc_status   => led_inc,
+            flag_param_status => led_param
         );
-
-
-
 
     freqteiler_inst : entity work.frequenzteiler
         port map (
@@ -188,15 +169,10 @@ begin
             note_dbg => mystery_note
         );
 
-    -- Multiplexer: waehlt je nach Modus die passende Wellenform aus
-    with sig_mode select
-        final_signal <= wave_sin     when "001",  -- Modus 1: Sinus
-                        x"00"        when "010",  -- Modus 2: stumm
-                        wave_tri     when "011",  -- Modus 3: Dreieck
-                        wave_rect    when "100",  -- Modus 4: Rechteck
-                        wave_saw     when "101",  -- Modus 5: Saegezahn
-                        wave_mystery when "110",  -- Modus 6: Mystery (Tonfolge)
-                        x"00"        when others;
+    -- TODO: der Wurm hat sich zum Schluss den Multiplexer als Nachtisch
+    -- geschnappt. Waehle je nach sig_mode die passende Wellenform auf
+    -- final_signal: "001" Sinus, "010" stumm (x"00"), "011" Dreieck,
+    -- "100" Rechteck, "101" Saegezahn, "110" Mystery, sonst stumm.
 
     -- final_signal Bit fuer Bit an die DAC-Pins
     A1 <= final_signal(7);

@@ -35,7 +35,7 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-        -- hier k�nnte Ihr S�gezahngenerator stehen
+        -- hier könnte Ihr Sägezahngenerator stehen
         end if;
     end process;
 

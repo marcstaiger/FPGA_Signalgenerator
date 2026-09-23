@@ -27,7 +27,7 @@ begin
 
     process(clk_in)
     begin
-    --teile den takt wie das letzte stück pizza
+    --teile den Takt wie das letzte StÃ¼ck Pizza
     end process;
 
     tick_out <= tick_reg;

@@ -19,7 +19,7 @@ Wichtig dabei: Alle vier Generatoren laufen fortlaufend, unabhängig davon, welc
 
 \section{Ein Takt, viele Geschwindigkeiten}
 
-Eine zentrale Fragestellung dabei: Wie lassen sich aus einem einzigen, festen 50\,MHz-Systemtakt unterschiedlich schnelle Ausgabefrequenzen erzeugen? Der naheliegende, aber ungeeignete Ansatz wäre, selbst einen langsameren Takt zu erzeugen, zum Beispiel indem man ein Bit eines Zählers als Takt für andere Register verwendet, das kann auf Dauer zu Problemen führen, die sich erst auf der echten Hardware zeigen.
+Wie lassen sich aus einem einzigen, festen 50\,MHz-Systemtakt unterschiedlich schnelle Ausgabefrequenzen erzeugen? Der naheliegende, aber ungeeignete Ansatz wäre, selbst einen langsameren Takt zu erzeugen, zum Beispiel indem man ein Bit eines Zählers als Takt für andere Register verwendet, das kann auf Dauer zu Problemen führen, die sich erst auf der echten Hardware zeigen.
 
 Die sauberere Lösung: \emph{alle} Register bleiben am echten Systemtakt, bekommen aber zusätzlich ein ganz normales Signal spendiert, das nur gelegentlich für einen Takt lang auf \texttt{1} geht, ein sogenanntes \emph{Enable-Signal}. Jedes Register prüft bei jeder Taktflanke: \glqq Ist das Enable-Signal gerade aktiv?\grqq{} und übernimmt einen neuen Wert nur dann. Ist es das nicht, bleibt der alte Wert einfach stehen, obwohl der Takt weiterläuft.
 
@@ -51,7 +51,7 @@ Der Sinus ist der aufwendigste Generator, weil ein echter Sinus sich nicht einfa
     \item Eine kleine Rechenpipeline skaliert diesen Rohwert auf die eingestellte Amplitude und verschiebt ihn von einem vorzeichenbehafteten Bereich in den Bereich 0--255, den der DAC erwartet.
 \end{enumerate}
 
-\section{Taster-Entprellung}
+\section{Tasterentprellung}
 
 Mechanische Taster \glqq prellen\grqq{}: Beim Drücken wechseln sie für ein paar Millisekunden mehrfach schnell zwischen 0 und 1, statt sauber einmal umzuschalten. Würde man das direkt auswerten, würde ein einziger Tastendruck als mehrere Tastendrücke gezählt. Das Modul \texttt{debounce} übernimmt deshalb einen neuen Tasterwert erst, wenn er eine festgelegte Zeit lang stabil ansteht, und synchronisiert das von außen kommende Signal zusätzlich über zwei Flipflops auf den Systemtakt. Erst danach wertet die \texttt{steuerung} den eigentlichen Tastendruck (die fallende Flanke) aus.
 
